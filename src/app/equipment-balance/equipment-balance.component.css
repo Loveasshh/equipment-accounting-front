@@ -1,0 +1,51 @@
+h1{
+    padding-top: 2%;
+  }
+  .equipment-table {
+      width: 100%;
+      border-top: 1px solid currentColor;
+      border-left: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+    }
+    
+    .equipment {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+  }
+  
+  .searchFields {
+    display: flex;
+    align-items: left;
+    flex-direction: row;
+    justify-content: start;
+    column-gap: 250px;
+  }
+
+  .mat-column-equipment-name {
+      width: 32px;
+      border-right: 1px solid currentColor;
+      padding-right: 24px;
+      text-align: center;
+    }
+    .mat-column-equipment-order {
+      border-right: 1px solid currentColor;
+      width: 150px;
+      text-align: center;
+    }
+    .mat-column-equipment-serial {
+      border-right: 1px solid currentColor;
+      width: 150px;
+      text-align: center;
+    }
+    .mat-column-equipment-category {
+      width: 150px;
+      text-align: center;
+    }
+    .demo-row-is-clicked {
+        font-weight: bold;
+      }
+      .mat-row{
+        cursor: pointer;
+      }

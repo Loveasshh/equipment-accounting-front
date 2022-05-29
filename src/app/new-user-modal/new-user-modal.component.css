@@ -1,0 +1,28 @@
+.top_panel{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .input_field{
+    background-color: #c5eec4;
+    border: 0;
+    width: 100%;
+    padding: 8px 0 8px 10px;
+    border-radius: 4px 4px 4px 4px;
+    margin-bottom: 3%;
+  }
+  
+  .btn_add{
+    display: flex;
+    justify-content: center;
+  }
+  
+  p{
+    font-size: 16px;
+  }
+  
+  .error-message {
+    color: #bf4547;
+    padding-bottom: 15px;
+  }
+  

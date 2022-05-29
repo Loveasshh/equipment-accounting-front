@@ -1,0 +1,132 @@
+h1{
+    padding-top: 2%;
+  }
+  .moving-table {
+      width: 100%;
+      border-top: 1px solid currentColor;
+      border-left: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+    }
+    
+    .movingEquipment {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+  }
+  
+  .searchFields {
+    display: flex;
+    align-items: left;
+    flex-direction: row;
+    justify-content: start;
+    column-gap: 440px;
+  }
+  .select{
+    
+  }
+  .mat-column-moving-date {
+      width: 32px;
+      border-right: 1px solid currentColor;
+      padding-right: 24px;
+      text-align: center;
+    }
+    .mat-column-moving-name {
+      border-right: 1px solid currentColor;
+      width: 150px;
+      text-align: center;
+    }
+    .mat-column-moving-order {
+      border-right: 1px solid currentColor;
+      width: 150px;
+      text-align: center;
+    }
+    .mat-column-moving-serial {
+      width: 150px;
+      text-align: center;
+      border-right: 1px solid currentColor;
+    }
+    .mat-column-moving-category {
+      width: 150px;
+      text-align: center;
+      border-right: 1px solid currentColor;
+    }
+  
+    .mat-column-moving-from {
+      width: 150px;
+      text-align: center;
+      border-right: 1px solid currentColor;
+    }
+    .mat-column-moving-to {
+      width: 150px;
+      text-align: center;
+    }
+  
+    .wrapper {
+        width: 90%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 50px;
+      }
+      
+      .one {
+    
+        grid-column: 1 / 2;
+        grid-row: 1;
+      }
+      .two {
+        grid-column: 2 / 2;
+        grid-row: 1 / 2;
+      }
+        .input_field{
+          display: flex;
+          justify-content: center;
+          background-color: #c5eec4;
+          border: 0;
+          width: 444px;
+          padding: 10px 0 10px 6px;
+          border-radius: 4px 4px 4px 4px;
+          margin-bottom: 1%;
+          font-family: Roboto;
+        }
+        
+        .danger{
+          color: red;
+        }
+        .not_input_field{
+          display: flex;
+          justify-content:center;
+          background-color: grey;
+          border: 0;
+          width: 444px;
+          padding: 10px 0 10px 6px;
+          border-radius: 4px 4px 4px 4px;
+          margin-bottom: 1%;
+        }
+        option{
+          font-family: Roboto;
+        }
+      .btn_add{
+      
+        display: flex;
+        justify-content: center;
+      }
+        button{
+          background-color: #43b05a;
+          border: 0;
+          padding: 10px 15px 10px 15px;
+          border-radius: 4px 4px 4px 4px;
+          box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+          font-size: 15px;
+          margin-right: 3%;
+          width: 155px;
+          color: white;
+          cursor: pointer;
+        }
+
+        .demo-row-is-clicked {
+            font-weight: bold;
+          }
+          .mat-row{
+            cursor: pointer;
+          }

@@ -1,0 +1,26 @@
+<div class="top_panel">
+    <p mat-dialog-title>Добавить пользователя</p>
+    <input type="image" src="../../assets/close.png" width="7%" height="7%" (click)="onClose()">
+  </div>
+  <hr>
+  <form name="form" (ngSubmit)="f.form.valid && onSave()" mat-dialog-content #f="ngForm" novalidate>
+    <p>Введите логин:</p>
+      <input matInput name="username" [(ngModel)]="data.username" #username="ngModel" class="input_field" type="text" required minlength="3"
+             maxlength="11">
+    <div *ngIf="f.submitted && username.invalid">
+      <div class="error-message" *ngIf="username?.errors?.['required']">Логин обязателен</div>
+      <div class="error-message" *ngIf="username?.errors?.['minlength']">Логин не может быть меньше 3 символов</div>
+      <div class="error-message" *ngIf="username?.errors?.['maxlength']">Логин не может быть больше 11 симолов</div>
+    </div>
+    <p>Введите пароль:</p>
+      <input matInput name="password" [(ngModel)]="data.password" #password="ngModel" class="input_field" type="text" required minlength="3" maxlength="6">
+    <div *ngIf="f.submitted && password.invalid">
+      <div class="error-message" *ngIf="password?.errors?.['required']">Пароль обязателен</div>
+      <div class="error-message" *ngIf="password?.errors?.['minlength']">Пароль должен содержать минимум 3 символа</div>
+      <div class="error-message" *ngIf="password?.errors?.['maxlength']">Пароль должен содержать максимум 6 символов</div>
+    </div>
+    <div class="btn_add">
+        <button class="but" (click)="onSave()">Добавить</button>
+      </div>
+  </form>
+  

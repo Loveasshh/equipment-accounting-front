@@ -1,0 +1,55 @@
+<h1>Фиксирование прибытия оборудования</h1>
+<form [formGroup]="myForm" mat-dialog-content>
+    <div class = "wrapper">
+        <div class="one">
+            <label for="equipmentName">Наименование</label>
+            <input id = "equipmentName" [(ngModel)]="equipment.equipmentName" formControlName="equipmentName" class="input_field" type="text"/>
+        
+            <div class="danger">
+            <span *ngIf="_equipmentName?.errors?.['required']">Пустое название недопустимо</span>
+            <span *ngIf="_equipmentName?.errors?.['minlength']">Введите больше 3 символов</span>
+            <span *ngIf="_equipmentName?.errors?.['maxlength']">Введите меньше 15 символов</span>
+            </div>
+    <label for="equipmentOrderNumber">Заказной номер</label>
+    <input id = "equipmentOrderNumber" [(ngModel)]="equipment.equipmentOrderNumber" formControlName="equipmentOrderNumber" class="input_field" type="text"/>
+    
+    <label for="equipmentSerialNumber">Серийный номер</label>
+    <input id = "equipmentSerialNumber" [(ngModel)]="equipment.equipmentSerialNumber" formControlName="equipmentSerialNumber" class="input_field" type="text"/>
+     
+    <label for="movingFrom">От кого</label>
+    <input id = "movingFrom" [(ngModel)]="equipmentMoving.movingFrom" formControlName="movingFrom" class="input_field" type="text"/>
+     
+    <label for="movingTo">Кому</label>
+    <input id = "movingTo" [(ngModel)]="equipmentMoving.movingTo" formControlName="movingTo" class="input_field" type="text"/>
+</div>
+<div class="two">
+    
+
+    <p>Описание</p>
+    <textarea id = "description" [(ngModel)]="equipmentMoving.description" formControlName="description" style="padding-bottom:70px ;
+    font-size:16px;
+    height: 30px;
+    width: 444px">
+    </textarea>
+    <mat-form-field appereance="fill" class = "select">
+        <mat-label>Категория</mat-label>
+        <mat-select [(ngModel)] = "equipment.category" formControlName = "category">
+            <mat-option *ngFor="let category of categories" [value]="category.categoryName">
+            {{category.categoryName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <p>Назначение</p>
+    <textarea id = "purpose" [(ngModel)]="equipmentMoving.purpose" formControlName="purpose" style="padding-bottom:70px ;
+    font-size:16px;
+    height: 30px;
+    width: 444px">
+    </textarea>
+    
+</div>
+
+</div>
+<div class="btn_add">
+    <button class="but" (click)="onSave()">Добавить</button>
+  </div>
+  </form>

@@ -1,0 +1,63 @@
+h1{
+  padding-top: 2%;
+}
+.moving-table {
+    width: 100%;
+    border-top: 1px solid currentColor;
+    border-left: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+  }
+  
+  .movingEquipment {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.searchFields {
+  display: flex;
+  align-items: left;
+  flex-direction: row;
+  justify-content: start;
+  column-gap: 750px;
+}
+.select{
+  
+}
+.mat-column-moving-date {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+  }
+  .mat-column-moving-name {
+    border-right: 1px solid currentColor;
+    width: 150px;
+    text-align: center;
+  }
+  .mat-column-moving-order {
+    border-right: 1px solid currentColor;
+    width: 150px;
+    text-align: center;
+  }
+  .mat-column-moving-serial {
+    width: 150px;
+    text-align: center;
+    border-right: 1px solid currentColor;
+  }
+  .mat-column-moving-category {
+    width: 150px;
+    text-align: center;
+    border-right: 1px solid currentColor;
+  }
+
+  .mat-column-moving-from {
+    width: 150px;
+    text-align: center;
+    border-right: 1px solid currentColor;
+  }
+  .mat-column-moving-to {
+    width: 150px;
+    text-align: center;
+  }

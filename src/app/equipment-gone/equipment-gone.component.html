@@ -1,0 +1,93 @@
+
+<div class="movingEquipment">
+    <h1>Фиксирование ухода оборудования    </h1>
+    <div class = "searchFields">
+        <mat-form-field appereance="fill" class = "select">
+            <mat-label>Категория</mat-label>
+            <mat-select (selectionChange)="onChange($event)">
+                <mat-option *ngFor="let category of categories" [value]="category.categoryName">
+                {{category.categoryName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field class = "filter">
+            <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+    
+    <div class = "matTable" >
+        
+        <table mat-table [dataSource]="dataSource" class="moving-table" >
+        
+              <ng-container matColumnDef="moving-name">
+                <th mat-header-cell *matHeaderCellDef>Наименование</th>
+                <td mat-cell *matCellDef="let element"> {{element.equipment.equipmentName}} </td>
+              </ng-container>
+              <ng-container matColumnDef="moving-category">
+                <th mat-header-cell *matHeaderCellDef>Категория</th>
+                <td mat-cell *matCellDef="let element"> {{element.equipment.category.categoryName}} </td>
+              </ng-container>
+              <ng-container matColumnDef="moving-order">
+                <th mat-header-cell *matHeaderCellDef>Заказаной номер</th>
+                <td mat-cell *matCellDef="let element"> {{element.equipment.equipmentOrderNumber}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="moving-serial">
+                <th mat-header-cell *matHeaderCellDef>Серийный номер</th>
+                <td mat-cell *matCellDef="let element"> {{element.equipment.equipmentSerialNumber}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="moving-to">
+                <th mat-header-cell *matHeaderCellDef>У кого находится</th>
+                <td mat-cell *matCellDef="let element"> {{element.movingTo}} </td>
+              </ng-container>
+    
+              <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+              <tr mat-row 
+                
+                *matRowDef="let row; columns: displayedColumns;"
+                (click)="getRecord(row)"
+                [class.demo-row-is-clicked]="clickedRows.has(row)"
+              ></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+        </div>
+        <form [formGroup]="myForm" mat-dialog-content>
+            <div class = "wrapper">
+                <div class="one">
+                    
+            <label for="movingFrom">От кого</label>
+            <input id = "movingFrom" [(ngModel)]="equipmentMoving.movingFrom" formControlName="movingFrom" class="input_field" type="text"/>
+             
+            <label for="movingTo">Кому</label>
+            <input id = "movingTo" [(ngModel)]="equipmentMoving.movingTo" formControlName="movingTo" class="input_field" type="text"/>
+        </div>
+        <div class="two">
+            
+        
+            <p>Описание</p>
+            <textarea id = "description" [(ngModel)]="equipmentMoving.description" formControlName="description" style="padding-bottom:70px ;
+            font-size:16px;
+            height: 30px;
+            width: 444px">
+            </textarea>
+            
+            <p>Назначение</p>
+            <textarea id = "purpose" [(ngModel)]="equipmentMoving.purpose" formControlName="purpose" style="padding-bottom:70px ;
+            font-size:16px;
+            height: 30px;
+            width: 444px">
+            </textarea>
+            
+        </div>
+        
+        </div>
+        <div class="btn_add">
+            <button class="but" (click)="onSave()">Добавить</button>
+          </div>
+          </form>
+</div>

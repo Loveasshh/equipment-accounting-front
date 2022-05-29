@@ -1,0 +1,66 @@
+
+  
+  *{
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+  }
+  
+  .main{
+    background-color: #c5eec4;
+    height: 50px;
+    margin-bottom: 100px;
+  }
+  
+  .main-img {
+    display: grid;
+    justify-content: space-between;
+  }
+  
+  .main-img__keyboard {
+    grid-column: 10;
+  }
+  
+  .main-img__logo {
+    grid-column: 6;
+  }
+  
+  .log_in{
+    display: flex;
+    height: 80px;
+    justify-content: center;
+  }
+  
+  button{
+    background-color: #43b05a;
+    border: 0;
+    padding: 10px 15px 10px 15px;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    font-size: 15px;
+    margin-right: 3%;
+    width: 155px;
+    margin-top: 2%;
+  }
+  
+  a{
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Roboto;
+  }
+  
+  .user_button{
+    background-color: #bf4547;
+    width: 145px;
+    color: white;
+    font-size: 14px;
+    font-family: Roboto;
+    cursor: pointer;
+  }
+  
+  .user_btn_text{
+    font-size: 15px;
+    margin-top: 1%;
+  }
+  
+  
