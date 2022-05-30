@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { TokenStorageService } from '../auth/token-storage.service';
 import { Category } from '../domain/category';
 import { MovingEquipment } from '../domain/movingEquipment';
 import { User } from '../domain/user';
@@ -16,9 +17,10 @@ import { EquipmentMovingService } from '../services/equipmentMoving.service';
   styleUrls: ['./activity-log.component.css']
 })
 export class ActivityLogComponent implements OnInit, AfterViewInit{
-
-  username: string;
-  password: string;
+  roles!: string[];
+  authority!: string;
+  username!: string;
+  password!: string;
 
   public isGone: boolean[] = [];
   searchText: string = '';
@@ -29,7 +31,7 @@ export class ActivityLogComponent implements OnInit, AfterViewInit{
   public users: User[] = [];
   public goodResponse = [];
   constructor(private equipmentMoving: EquipmentMovingService, private categoryService: CategoryService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog, private tokenStorage: TokenStorageService) {
     this.dataSource.filterPredicate = (data: any, filter) => {
       const dataStr = data.movingFrom + data.movingTo + data.movingDate + data.equipment.equipmentName
       + data.equipment.equipmentOrderNumber + data.equipment.equipmentSerialNumber + data.equipment.category.categoryName;
@@ -46,6 +48,17 @@ export class ActivityLogComponent implements OnInit, AfterViewInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
   ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.roles = this.tokenStorage.getAuthorities();
+      this.roles.every(role => {
+        if (role === 'ROLE_ADMIN') {
+          this.authority = 'admin';
+          return false;
+        }
+        this.authority = 'user';
+        return true;
+      });
+    }
     this.equipmentMoving.getAllOrderByDate().subscribe(response => {
       this.allEquipmentMoving = response;
       this.dataSource.data = this.allEquipmentMoving;

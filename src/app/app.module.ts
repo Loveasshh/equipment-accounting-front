@@ -22,11 +22,12 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatTableModule} from '@angular/material/table'  
-import {MatPaginatorModule } from '@angular/material/paginator';
+import {MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MaterialAppModule } from './ngmaterial.module';
 import { CommonModule, NgStyle } from '@angular/common';
 import { NewUserModalComponent } from './new-user-modal/new-user-modal.component';
 import { EquipmentActivityLogModalComponent } from './equipment-activity-log-modal/equipment-activity-log-modal.component';
+import { CustomPaginator } from './services/CustomPaginatorConfiguration';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { EquipmentActivityLogModalComponent } from './equipment-activity-log-mod
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
-    httpInterceptorProviders],
+    httpInterceptorProviders,
+    {provide: MatPaginatorIntl, useValue: CustomPaginator()}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

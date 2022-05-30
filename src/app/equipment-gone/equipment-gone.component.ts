@@ -19,6 +19,7 @@ import { Equipment } from '../domain/equipment';
 import { EquipmentService } from '../services/equipment.service';
 import { UserService } from '../services/user.service';
 import { TokenStorageService } from '../auth/token-storage.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-equipment-gone',
@@ -49,7 +50,7 @@ export class EquipmentGoneComponent implements OnInit, AfterViewInit{
   public goodResponse = [];
   constructor(private equipmentMovingService: EquipmentMovingService, 
     private categoryService: CategoryService, private equipmentService: EquipmentService, private userService: UserService,
-    private tokenStorage: TokenStorageService) {
+    private tokenStorage: TokenStorageService, public snackBar: MatSnackBar) {
     this.dataSource.filterPredicate = (data: any, filter) => {
       const dataStr = data.movingFrom + data.movingTo + data.movingDate + data.equipment.equipmentName
       + data.equipment.equipmentOrderNumber + data.equipment.equipmentSerialNumber + data.equipment.category.categoryName;
@@ -106,7 +107,7 @@ export class EquipmentGoneComponent implements OnInit, AfterViewInit{
       this.choosenEquipmentMoving = equipmentMoving;
    }
 
-  onSave() {
+  onSubmit() {
     if (this.myForm.valid) {
       this.userService.getUserByName(this.tokenStorage.getUsername()).subscribe((el) => {
           console.log(this.equipmentMoving);
@@ -123,8 +124,22 @@ export class EquipmentGoneComponent implements OnInit, AfterViewInit{
           this.equipmentMovingService.addEquipmentMoving(this.equipmentMovingRs).subscribe(()=>window.location.reload());
         
       });
-      
+      this.snackBar.open("Уход оборудования успешно зафиксирован", "", {
+        duration: 3000
+      });
       
     }
+  }
+  get _movingFrom() {
+    return this.myForm.get('movingFrom')
+  }
+  get _movingTo() {
+    return this.myForm.get('movingTo')
+  }
+  get _description() {
+    return this.myForm.get('description')
+  }
+  get _purpose() {
+    return this.myForm.get('purpose')
   }
 }

@@ -20,7 +20,7 @@ export class EquipmentActivityLogModalComponent implements OnInit {
   
   constructor(private equipmentMoving: EquipmentMovingService, private categoryService: CategoryService,
     public dialogRef: MatDialogRef<NewUserModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {equipmentId: number}) {this.dataSource.filterPredicate = (data: any, filter) => {
+    @Inject(MAT_DIALOG_DATA) public data: {equipmentName: string, equipmentSerialNumber: string}) {this.dataSource.filterPredicate = (data: any, filter) => {
       const dataStr = data.movingFrom + data.movingTo + data.movingDate + data.equipment.equipmentName
       + data.equipment.equipmentOrderNumber + data.equipment.equipmentSerialNumber + data.equipment.category.categoryName;
       return dataStr.indexOf(filter) != -1; }}
@@ -32,8 +32,11 @@ export class EquipmentActivityLogModalComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.equipmentMoving.getAllOrderByDate().subscribe(response => {
+    console.log(this.data.equipmentName);
+    console.log(this.data.equipmentSerialNumber);
+    this.equipmentMoving.getAllByEquipment(this.data.equipmentName, this.data.equipmentSerialNumber).subscribe(response => {
       this.allEquipmentMoving = response;
+      console.log()
       this.dataSource.data = this.allEquipmentMoving;
       console.log(this.allEquipmentMoving);
       this.categoryService.getAllCategories().subscribe(

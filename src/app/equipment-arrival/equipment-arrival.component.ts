@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SignUpInfo } from '../auth/signup-info';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { Category } from '../domain/category';
@@ -41,7 +42,7 @@ export class EquipmentArrivalComponent implements OnInit {
   })
 
   constructor(private categoryService: CategoryService,private tokenStorage: TokenStorageService, private equipmentService: EquipmentService,
-    private userService: UserService, private equipmentMovingService: EquipmentMovingService) { }
+    private userService: UserService, private equipmentMovingService: EquipmentMovingService, public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe(
@@ -49,7 +50,7 @@ export class EquipmentArrivalComponent implements OnInit {
         console.log(this.categories[0].categoryName);}
     );
   }
-  onSave() {
+  onSubmit() {
     if (this.myForm.valid) {
       
       this.equipmentRs.equipmentDescription = this.equipment.equipmentDescription;
@@ -81,9 +82,30 @@ export class EquipmentArrivalComponent implements OnInit {
       });
       
       
+     this.snackBar.open("Приход оборудования успешно зафиксирован", "", {
+       duration: 3000
+     });
     }
   }
   get _equipmentName() {
     return this.myForm.get('equipmentName')
+  }
+  get _equipmentSerialNumber() {
+    return this.myForm.get('equipmentSerialNumber')
+  }
+  get _equipmentOrderNumber() {
+    return this.myForm.get('equipmentOrderNumber')
+  }
+  get _movingFrom() {
+    return this.myForm.get('movingFrom')
+  }
+  get _movingTo() {
+    return this.myForm.get('movingTo')
+  }
+  get _description() {
+    return this.myForm.get('description')
+  }
+  get _purpose() {
+    return this.myForm.get('purpose')
   }
 }

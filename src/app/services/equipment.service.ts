@@ -5,6 +5,7 @@ import {User} from "../domain/user";
 import { MovingEquipment } from '../domain/movingEquipment';
 import { Equipment } from '../domain/equipment';
 import { EquipmentResponse } from '../domain/equipmentResponse';
+import { EquipmentList } from '../domain/equipmentList';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,6 +20,10 @@ export class EquipmentService {
   private equipmentUrl = 'http://localhost:8080/api/equipment';
 
   constructor(private http: HttpClient) { }
+
+  addAllEquipment(equipmentList: EquipmentResponse[]): Observable<EquipmentResponse[]> {
+    return this.http.post<EquipmentResponse[]>(`${this.equipmentUrl}/addAll`,equipmentList,httpOptions);
+  }
 
   addEquipment(equipment: EquipmentResponse): Observable<EquipmentResponse> {
     return this.http.post<EquipmentResponse>(`${this.equipmentUrl}/add`,equipment,httpOptions);

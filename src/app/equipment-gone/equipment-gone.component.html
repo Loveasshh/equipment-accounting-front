@@ -12,7 +12,7 @@
         </mat-form-field>
         
         <mat-form-field class = "filter">
-            <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter">
+            <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Поиск">
         </mat-form-field>
     </div>
     
@@ -56,38 +56,62 @@
                  aria-label="Select page of periodic elements">
   </mat-paginator>
         </div>
-        <form [formGroup]="myForm" mat-dialog-content>
+        <form [formGroup]="myForm" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate mat-dialog-content>
             <div class = "wrapper">
                 <div class="one">
                     
             <label for="movingFrom">От кого</label>
-            <input id = "movingFrom" [(ngModel)]="equipmentMoving.movingFrom" formControlName="movingFrom" class="input_field" type="text"/>
-             
+            <input id = "movingFrom" [(ngModel)]="equipmentMoving.movingFrom" formControlName="movingFrom" class="input_field" type="text"
+            required minlength="5" maxlength="15"/>
+            <div *ngIf="f.submitted" class="danger">
+              <span *ngIf="_movingFrom?.errors?.['required']">Пустое название недопустимо</span>
+              <span *ngIf="_movingFrom?.errors?.['minlength']">Введите больше 5 символов</span>
+              <span *ngIf="_movingFrom?.errors?.['maxlength']">Введите меньше 15 символов</span>
+              </div>
             <label for="movingTo">Кому</label>
-            <input id = "movingTo" [(ngModel)]="equipmentMoving.movingTo" formControlName="movingTo" class="input_field" type="text"/>
+            <input id = "movingTo" [(ngModel)]="equipmentMoving.movingTo" formControlName="movingTo" class="input_field" type="text"
+            required minlength="5" maxlength="15"/>
+            <div *ngIf="f.submitted" class="danger">
+              <span *ngIf="_movingTo?.errors?.['required']">Пустое название недопустимо</span>
+              <span *ngIf="_movingTo?.errors?.['minlength']">Введите больше 5 символов</span>
+              <span *ngIf="_movingTo?.errors?.['maxlength']">Введите меньше 15 символов</span>
+              </div>
         </div>
         <div class="two">
             
-        
-            <p>Описание</p>
-            <textarea id = "description" [(ngModel)]="equipmentMoving.description" formControlName="description" style="padding-bottom:70px ;
+            <label for="description">Описание</label>
+            
+            <textarea id = "description" [(ngModel)]="equipmentMoving.description" formControlName="description"
+            required minlength="10" maxlength="30"
+            style="padding-bottom:70px ;
             font-size:16px;
             height: 30px;
             width: 444px">
             </textarea>
+            <div *ngIf="f.submitted" class="danger">
+              <span *ngIf="_description?.errors?.['required']">Пустое название недопустимо</span>
+              <span *ngIf="_description?.errors?.['minlength']">Введите больше 10 символов</span>
+              <span *ngIf="_description?.errors?.['maxlength']">Введите меньше 30 символов</span>
+              </div>
             
-            <p>Назначение</p>
-            <textarea id = "purpose" [(ngModel)]="equipmentMoving.purpose" formControlName="purpose" style="padding-bottom:70px ;
+            <label for="purpose">Назначение</label>
+            <textarea id = "purpose" [(ngModel)]="equipmentMoving.purpose" formControlName="purpose" 
+            required minlength="10" maxlength="30"
+            style="padding-bottom:70px ;
             font-size:16px;
             height: 30px;
             width: 444px">
             </textarea>
-            
+            <div *ngIf="f.submitted" class="danger">
+              <span *ngIf="_purpose?.errors?.['required']">Пустое название недопустимо</span>
+              <span *ngIf="_purpose?.errors?.['minlength']">Введите больше 10 символов</span>
+              <span *ngIf="_purpose?.errors?.['maxlength']">Введите меньше 30 символов</span>
+              </div>
         </div>
         
         </div>
         <div class="btn_add">
-            <button class="but" (click)="onSave()">Добавить</button>
+            <button class="but">Добавить</button>
           </div>
           </form>
 </div>

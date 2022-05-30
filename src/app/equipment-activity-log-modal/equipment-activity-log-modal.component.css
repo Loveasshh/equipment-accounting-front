@@ -1,0 +1,101 @@
+.top_panel{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .input_field{
+    background-color: #c5eec4;
+    border: 0;
+    width: 100%;
+    padding: 8px 0 8px 10px;
+    border-radius: 4px 4px 4px 4px;
+    margin-bottom: 3%;
+  }
+
+  .moving-table {
+    width: 100%;
+    border-top: 1px solid currentColor;
+    border-left: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+  }
+  
+  .movingEquipment {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.searchFields {
+  display: flex;
+  align-items: left;
+  flex-direction: row;
+  justify-content: start;
+  column-gap: 750px;
+}
+.select{
+  
+}
+.mat-column-moving-date {
+  border-bottom: 1px solid currentColor;
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+  }
+  .mat-column-moving-name {
+    border-bottom: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    width: 150px;
+    text-align: center;
+  }
+  .mat-column-moving-order {
+    border-bottom: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    width: 150px;
+    text-align: center;
+  }
+  .mat-column-moving-serial {
+    border-bottom: 1px solid currentColor;
+    width: 150px;
+    text-align: center;
+    border-right: 1px solid currentColor;
+  }
+  .mat-column-moving-category {
+    border-bottom: 1px solid currentColor;
+    width: 150px;
+    text-align: center;
+    border-right: 1px solid currentColor;
+  }
+
+  .mat-column-moving-from {
+    border-bottom: 1px solid currentColor;
+    width: 150px;
+    text-align: center;
+    border-right: 1px solid currentColor;
+  }
+  .mat-column-moving-to {
+    border-bottom: 1px solid currentColor;
+    width: 150px;
+    text-align: center;
+    border-right: 1px solid currentColor;
+  }
+  .mat-column-moving-user {
+    border-bottom: 1px solid currentColor;
+
+    border-right: 1px solid currentColor;
+    width: 150px;
+    text-align: center;
+  }
+  .mat-column-moving-description {
+    border-bottom: 1px solid currentColor;
+    
+    width: 150px;
+    text-align: center;
+  }
+  .mat-column-moving-purpose {
+    border-bottom: 1px solid currentColor;
+    
+    width: 150px;
+    text-align: center;
+    border-right: 1px solid currentColor;
+  }

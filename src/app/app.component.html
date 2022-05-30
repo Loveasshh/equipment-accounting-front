@@ -1,6 +1,9 @@
 <div *ngIf="authority">
   <nav class="log_in">
     <button>
+      <a href="/home">Перемещение оборудования</a>
+    </button>
+    <button>
       <a href="/equipment-arrival">Приход</a>
     </button>
     <button>
@@ -13,7 +16,7 @@
       <a href="/activity-log">Журнал действий</a>
     </button>
     <button class="user_button" (click)="logout()">
-      <p>{{username}}, {{authority === "admin" ? "админ" : "ученик"}}<br>Выйти</p>
+      <p>{{username}}, {{authority === "admin" ? "админ" : "пользователь"}}<br>Выйти</p>
     </button>
   </nav>
 </div>

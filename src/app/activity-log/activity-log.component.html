@@ -2,17 +2,9 @@
 <div class="movingEquipment">
     <h1>Журнал действий пользователей</h1>
     <div class = "searchFields">
-        <mat-form-field appereance="fill" class = "select">
-            <mat-label>Категория</mat-label>
-            <mat-select (selectionChange)="onChange($event)">
-                <mat-option *ngFor="let category of categories" [value]="category.categoryName">
-                {{category.categoryName}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
         
         <mat-form-field class = "filter">
-            <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter">
+            <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Поиск">
         </mat-form-field>
     </div>
     
@@ -78,7 +70,7 @@
         </div>
         
 </div>
-<div class = "buttons">
+<div  class = "buttons " *ngIf="authority=='admin'">
     <div class="btn_add">
         <button class="but1" (click)="addUser()">Добавить пользователя</button>
     </div>

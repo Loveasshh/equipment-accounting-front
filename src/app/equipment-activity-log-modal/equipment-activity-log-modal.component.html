@@ -1,16 +1,11 @@
+<div ng-controller="testController"
+style="overflow-y: auto; max-height:400px;">
 <div class="top_panel">
-    <p mat-dialog-title>Добавить пользователя</p>
-    <input type="image" src="../../assets/close.png" width="7%" height="7%" (click)="onClose()">
+    <p mat-dialog-title [(ngModel)]="data">Журнал перемещения "{{data.equipmentName}}" с серийным номером "{{data.equipmentSerialNumber}}"</p>
+    <input type="image" src="../../assets/close.png" width="5%" height="5%" (click)="onClose()">
   </div>
   <div class="movingEquipment">
-    <h1>Журнал действий пользователей</h1>
-    <div class = "searchFields">
-        
-        
-        <mat-form-field class = "filter">
-            <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter">
-        </mat-form-field>
-    </div>
+    
     
     <div class = "matTable" >
         
@@ -67,10 +62,7 @@
              
               ></tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons 
-                 aria-label="Select page of periodic elements">
-  </mat-paginator>
         </div>
         
+</div>
 </div>

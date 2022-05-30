@@ -6,7 +6,6 @@ h1{
       border-top: 1px solid currentColor;
       border-left: 1px solid currentColor;
       border-right: 1px solid currentColor;
-      border-bottom: 1px solid currentColor;
     }
     
     .equipment {
@@ -25,21 +24,25 @@ h1{
 
   .mat-column-equipment-name {
       width: 32px;
+      border-bottom: 1px solid currentColor;
       border-right: 1px solid currentColor;
       padding-right: 24px;
       text-align: center;
     }
     .mat-column-equipment-order {
+      border-bottom: 1px solid currentColor;
       border-right: 1px solid currentColor;
       width: 150px;
       text-align: center;
     }
     .mat-column-equipment-serial {
+      border-bottom: 1px solid currentColor;
       border-right: 1px solid currentColor;
       width: 150px;
       text-align: center;
     }
     .mat-column-equipment-category {
+      border-bottom: 1px solid currentColor;
       width: 150px;
       text-align: center;
     }
@@ -48,4 +51,49 @@ h1{
       }
       .mat-row{
         cursor: pointer;
+      }
+      #upload_button{
+        display: flex;
+        flex-direction: row;
+      }
+      
+      #upload_button input[type=file] {
+        display:none;
+        
+      }
+      label{
+        border: 0;
+        padding: 10px 15px 10px 15px;
+        border-radius: 4px 4px 4px 4px;
+        box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        font-size: 15px;
+        color: white;
+        cursor: pointer;
+        background-color: #0068A9;
+      }
+      
+      .buttons{
+        display: flex;
+    align-items: left;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 250px;
+      }
+      .btn_export_excel{
+        margin-left: 10px;
+      }
+      button{
+        border: 0;
+        padding: 10px 15px 10px 15px;
+        border-radius: 4px 4px 4px 4px;
+        box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        font-size: 15px;
+        margin-right: 3%;
+        width: 155px;
+        color: white;
+        cursor: pointer;
+        background-color: #0068A9;
+      }
+      input{
+        
       }

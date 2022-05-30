@@ -6,7 +6,6 @@ h1{
       border-top: 1px solid currentColor;
       border-left: 1px solid currentColor;
       border-right: 1px solid currentColor;
-      border-bottom: 1px solid currentColor;
     }
     
     .movingEquipment {
@@ -26,38 +25,45 @@ h1{
     
   }
   .mat-column-moving-date {
+    border-bottom: 1px solid currentColor;
       width: 32px;
       border-right: 1px solid currentColor;
       padding-right: 24px;
       text-align: center;
     }
     .mat-column-moving-name {
+      border-bottom: 1px solid currentColor;
       border-right: 1px solid currentColor;
       width: 150px;
       text-align: center;
     }
     .mat-column-moving-order {
+      border-bottom: 1px solid currentColor;
       border-right: 1px solid currentColor;
       width: 150px;
       text-align: center;
     }
     .mat-column-moving-serial {
+      border-bottom: 1px solid currentColor;
       width: 150px;
       text-align: center;
       border-right: 1px solid currentColor;
     }
     .mat-column-moving-category {
+      border-bottom: 1px solid currentColor;
       width: 150px;
       text-align: center;
       border-right: 1px solid currentColor;
     }
   
     .mat-column-moving-from {
+      border-bottom: 1px solid currentColor;
       width: 150px;
       text-align: center;
       border-right: 1px solid currentColor;
     }
     .mat-column-moving-to {
+      border-bottom: 1px solid currentColor;
       width: 150px;
       text-align: center;
     }
@@ -75,13 +81,14 @@ h1{
         grid-row: 1;
       }
       .two {
+        display: inline-grid;
         grid-column: 2 / 2;
         grid-row: 1 / 2;
       }
         .input_field{
           display: flex;
           justify-content: center;
-          background-color: #c5eec4;
+          background-color: #62B1D0;
           border: 0;
           width: 444px;
           padding: 10px 0 10px 6px;
@@ -93,15 +100,8 @@ h1{
         .danger{
           color: red;
         }
-        .not_input_field{
-          display: flex;
-          justify-content:center;
-          background-color: grey;
-          border: 0;
-          width: 444px;
-          padding: 10px 0 10px 6px;
-          border-radius: 4px 4px 4px 4px;
-          margin-bottom: 1%;
+        textarea{
+          background-color: #62B1D0;
         }
         option{
           font-family: Roboto;
@@ -112,7 +112,8 @@ h1{
         justify-content: center;
       }
         button{
-          background-color: #43b05a;
+          margin-top: 10px;
+          background-color: #0068A9;
           border: 0;
           padding: 10px 15px 10px 15px;
           border-radius: 4px 4px 4px 4px;
@@ -129,4 +130,12 @@ h1{
           }
           .mat-row{
             cursor: pointer;
+          }
+          ::ng-deep .mat-snack-bar-container{
+            color: white !important;
+            background-color: #0068A9 !important;
+            border-color: #c3e6cb !important;
+          }
+          ::ng-deep .mat-simple-snackbar-action {
+            color: red;
           }

@@ -2,7 +2,7 @@
   
   ::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
     /*change color of underline*/
-    background-color: #c5eec4 !important;
+    background-color: #62B1D0 !important;
     padding-top: 0!important;
     width: 350px!important;
     border-radius: 4px 4px 4px 4px!important;
@@ -34,18 +34,19 @@
   }
   
   .btn{
-    background-color: #40b15c;
+    background-color: #0068A9;
     border: 0;
     padding: 10px 15px 10px 15px;
     color: white;
     border-radius: 4px 4px 4px 4px;
     box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     font-size: 15px;
+    width: 200px;
   }
   
   
   .btn:hover{
-    background-color: #2E8B57;
+    background-color: #62B1D0;
   }
   
   .error-message {
@@ -54,8 +55,8 @@
   }
   
   .main-img {
-    display: grid;
-    justify-content: space-between;
+    display: flex;
+    justify-content: center;
   }
   
   .main-img__keyboard {
@@ -63,11 +64,12 @@
   }
   
   .main-img__logo {
+    text-align: center;
     grid-column: 6;
   }
   
   .main{
-    background-color: #c5eec4;
+    text-align: center;
     height: 50px;
     margin-bottom: 100px;
   }

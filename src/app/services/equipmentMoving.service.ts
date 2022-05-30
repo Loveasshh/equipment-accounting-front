@@ -31,4 +31,11 @@ export class EquipmentMovingService {
   getAllOrderByDate(): Observable<MovingEquipment[]> {
     return this.http.get<MovingEquipment[]>(`${this.equipmentUrl}/getAllOrderByDate`, httpOptions);
   }
+
+  getAllByEquipment(equipmentName: string, equipmentSerialNumber:string): Observable<MovingEquipment[]> {
+    return this.http.get<MovingEquipment[]>(`${this.equipmentUrl}/getAllMovingByEquipment`, {
+      params: new HttpParams().append('equipmentName', equipmentName).append('equipmentSerialNumber',equipmentSerialNumber),
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
 }

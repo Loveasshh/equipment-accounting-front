@@ -12,7 +12,7 @@
         </mat-form-field>
         
         <mat-form-field class = "filter">
-            <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter">
+            <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Поиск">
         </mat-form-field>
     </div>
     
@@ -49,3 +49,20 @@
         </mat-paginator>
         </div>
 </div>
+          <div class = "buttons">
+              <div class="btn_export_excel">
+                <button class="but " (click)="exportAsXLSX()">Скачать Excel файл</button>
+              </div>
+        
+              <div id="upload_button">
+                <label>
+                  <input type="file" (change)="onFileChange($event)" multiple="false" value = "Выбрать файл"/>
+                  <span class="btn btn-primary">Загрузить файл</span>
+                </label>
+                <div *ngIf="this.isFileSelected" class="btn_export_excel">
+                  <button class="but " (click)="importAsXLSX()">Добавить баланс из файла</button>
+                </div>
+              </div>
+
+              
+          </div>
