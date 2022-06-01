@@ -2,10 +2,14 @@ h1{
     padding-top: 2%;
   }
   .moving-table {
+      margin-right: 70px;
       width: 100%;
       border-top: 1px solid currentColor;
       border-left: 1px solid currentColor;
       border-right: 1px solid currentColor;
+    }
+    .demo-row-is-clicked {
+      font-weight: bold;
     }
     
     .movingEquipment {
@@ -13,10 +17,12 @@ h1{
       align-items: center;
       flex-direction: column;
   }
-  
+  .mat-row{
+    cursor: pointer;
+  }
   .searchFields{
     
-    margin-left: 86%;
+    margin-left: 74%;
   }
  
   .select{
@@ -24,7 +30,7 @@ h1{
   } 
   .mat-column-moving-date {
     border-bottom: 1px solid currentColor;
-      width: 32px;
+      width: 100x;
       border-right: 1px solid currentColor;
       padding-right: 24px;
       text-align: center;
@@ -43,26 +49,26 @@ h1{
     }
     .mat-column-moving-serial {
       border-bottom: 1px solid currentColor;
-      width: 150px;
+      width: 100px;
       text-align: center;
       border-right: 1px solid currentColor;
     }
     .mat-column-moving-category {
       border-bottom: 1px solid currentColor;
-      width: 150px;
+      width: 100px;
       text-align: center;
       border-right: 1px solid currentColor;
     }
   
     .mat-column-moving-from {
       border-bottom: 1px solid currentColor;
-      width: 150px;
+      width: 100px;
       text-align: center;
       border-right: 1px solid currentColor;
     }
     .mat-column-moving-to {
       border-bottom: 1px solid currentColor;
-      width: 150px;
+      width: 100px;
       text-align: center;
       border-right: 1px solid currentColor;
     }
@@ -70,24 +76,26 @@ h1{
       border-bottom: 1px solid currentColor;
 
       border-right: 1px solid currentColor;
-      width: 150px;
+      width: 100px;
       text-align: center;
     }
     .mat-column-moving-description {
-      
-      width: 150px;
+      padding-left: 20px;
+      border-bottom: 1px solid currentColor;
+      width: 100px;
       text-align: center;
     }
     .mat-column-moving-purpose {
       border-bottom: 1px solid currentColor;
       max-width: 150px;
       
-      width: 150px;
+      width: 100px;
       text-align: center;
       border-right: 1px solid currentColor;
     }
 
     .buttons {
+      margin-right: 100px;
       display: flex;
       align-items: flex-end;
       justify-content: right;

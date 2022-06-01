@@ -1,0 +1,6 @@
+<p  [(ngModel)] = "data" mat-dialog-title>Вы действительно хотите удалить пользователя {{data.username}}?</p>
+<br>
+<div class="buttons" >
+  <button (click)="onDelete()" class="exit">Да </button>
+  <button  (click)="onClose()">Нет</button>
+</div>

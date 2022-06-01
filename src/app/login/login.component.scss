@@ -17,6 +17,9 @@
     /*change color of underline when focused*/
     width: 0 !important;
   }
+  .main{
+    padding-top: 5%;
+  }
   label{
     font-size: 15px;
     font-weight: 400;
@@ -53,7 +56,9 @@
     color: #bf4547;
     padding-bottom: 15px;
   }
-  
+  .alert-danger{
+    color: #bf4547;
+  }
   .main-img {
     display: flex;
     justify-content: center;

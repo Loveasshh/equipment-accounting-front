@@ -20,6 +20,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./equipment-arrival.component.css']
 })
 export class EquipmentArrivalComponent implements OnInit {
+  public isExistBySerialNumber!: boolean;
   username!: string;
   public equipmentRs: EquipmentResponse = new EquipmentResponse();
   public equipmentMovingRs: EquipmentMovingResponse = new EquipmentMovingResponse();
@@ -50,42 +51,51 @@ export class EquipmentArrivalComponent implements OnInit {
         console.log(this.categories[0].categoryName);}
     );
   }
-  onSubmit() {
-    if (this.myForm.valid) {
+  onSave() {
       
-      this.equipmentRs.equipmentDescription = this.equipment.equipmentDescription;
-      this.equipmentRs.equipmentName = this.equipment.equipmentName;
-      this.equipmentRs.equipmentOrderNumber = this.equipment.equipmentOrderNumber;
-      this.equipmentRs.equipmentSerialNumber = this.equipment.equipmentSerialNumber;
-      this.equipmentRs.categoryName = JSON.stringify(this.equipment.category);
-      console.log(this.equipment.equipmentName)
-      this.equipmentService.addEquipment(this.equipmentRs).subscribe(() => {
-        
-      });
-      this.userService.getUserByName(this.tokenStorage.getUsername()).subscribe((el) => {
-        this.equipmentMoving.user = el
-        console.log(el)
-        this.equipmentService.getEquipmentByName(this.equipment.equipmentName).subscribe((el2) => {
-          this.equipmentMoving.equipment = el2
-          console.log(el2)
-          this.equipmentMovingRs.description = this.equipmentMoving.description;
-          this.equipmentMovingRs.equipmentId = this.equipmentMoving.equipment.id;
-          this.equipmentMovingRs.userId = this.equipmentMoving.user.id;
-          this.equipmentMovingRs.movingFrom = this.equipmentMoving.movingFrom;
-          this.equipmentMovingRs.movingTo = this.equipmentMoving.movingTo;
-          this.equipmentMovingRs.movingType = "Приход";
-          this.equipmentMovingRs.purpose = this.equipmentMoving.purpose;
+      console.log(this.equipment.equipmentSerialNumber);
+      this.equipmentService.existBySerialNumber(this.equipment.equipmentSerialNumber).subscribe(
+        el => {this.isExistBySerialNumber = el
+        if (this.isExistBySerialNumber == false) {
+          this.equipmentRs.equipmentDescription = this.equipment.equipmentDescription;
+          this.equipmentRs.equipmentName = this.equipment.equipmentName;
+          this.equipmentRs.equipmentOrderNumber = this.equipment.equipmentOrderNumber;
+          this.equipmentRs.equipmentSerialNumber = this.equipment.equipmentSerialNumber;
+          this.equipmentRs.categoryName = JSON.stringify(this.equipment.category);
+          console.log(this.equipment.equipmentName)
+          this.equipmentService.addEquipment(this.equipmentRs).subscribe(() => {
+            
+          });
+          this.userService.getUserByName(this.tokenStorage.getUsername()).subscribe((el) => {
+            this.equipmentMoving.user = el
+            console.log(el)
+            this.equipmentService.getEquipmentByName(this.equipment.equipmentName).subscribe((el2) => {
+              this.equipmentMoving.equipment = el2
+              console.log(el2)
+              this.equipmentMovingRs.description = this.equipmentMoving.description;
+              this.equipmentMovingRs.equipmentId = this.equipmentMoving.equipment.id;
+              this.equipmentMovingRs.userId = this.equipmentMoving.user.id;
+              this.equipmentMovingRs.movingFrom = this.equipmentMoving.movingFrom;
+              this.equipmentMovingRs.movingTo = this.equipmentMoving.movingTo;
+              this.equipmentMovingRs.movingType = "Приход";
+              this.equipmentMovingRs.purpose = this.equipmentMoving.purpose;
+              
+              console.log("сука " + this.equipmentMovingRs.equipmentId)
+              this.equipmentMovingService.addEquipmentMoving(this.equipmentMovingRs).subscribe(()=> {
+                
+              });
+              window.location.reload()
+                this.snackBar.open("Приход оборудования успешно зафиксирован", "", {
+                  duration: 3000
+                });
+            })
+          });
           
-          console.log("сука " + this.equipmentMovingRs.equipmentId)
-          this.equipmentMovingService.addEquipmentMoving(this.equipmentMovingRs).subscribe(()=>window.location.reload());
-        })
-      });
-      
-      
-     this.snackBar.open("Приход оборудования успешно зафиксирован", "", {
-       duration: 3000
-     });
-    }
+          
+         
+        }
+        
+        });
   }
   get _equipmentName() {
     return this.myForm.get('equipmentName')

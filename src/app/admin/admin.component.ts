@@ -14,6 +14,7 @@ import {AfterViewInit} from '@angular/core';
 import { ExcelService } from '../services/excel.service';
 import { EquipmentMovingExcel } from '../domain/equipmentMovingExcel';
 import { Equipment } from '../domain/equipment';
+import { EquipmentMovingService } from '../services/equipmentMoving.service';
 interface Food {
   value: string;
   viewValue: string;
@@ -38,7 +39,7 @@ export class AdminComponent implements OnInit, AfterViewInit{
   public keys: string[] = [];
   public users: User[] = [];
   public goodResponse = [];
-  constructor(private adminService: AdminService, private categoryService: CategoryService, private excelService:ExcelService) {
+  constructor(private equipmentMovingService: EquipmentMovingService, private adminService: AdminService, private categoryService: CategoryService, private excelService:ExcelService) {
     this.dataSource.filterPredicate = (data: any, filter) => {
       const dataStr = data.movingFrom + data.movingTo + data.movingDate + data.equipment.equipmentName
       + data.equipment.equipmentOrderNumber + data.equipment.equipmentSerialNumber + data.equipment.category.categoryName;
@@ -56,7 +57,7 @@ export class AdminComponent implements OnInit, AfterViewInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
   ngOnInit(): void {
-    this.adminService.getAllEquipmentMoving().subscribe(response => {
+    this.equipmentMovingService.getAllOrderByDate().subscribe(response => {
       
       this.allEquipmentMoving = response;
       
@@ -103,8 +104,8 @@ export class AdminComponent implements OnInit, AfterViewInit{
  
 
  onFileChange(evt: any) {
-  /*this.isFileSelected = true;
-  const target : DataTransfer =  <DataTransfer>(evt.target);
+  this.isFileSelected = true;
+  /*const target : DataTransfer =  <DataTransfer>(evt.target);
   
   if (target.files.length !== 1) throw new Error('Cannot use multiple files');
 

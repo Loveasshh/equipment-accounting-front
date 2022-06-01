@@ -10,6 +10,7 @@ import { NewUserModalComponent } from '../new-user-modal/new-user-modal.componen
 import { AdminService } from '../services/admin.service';
 import { CategoryService } from '../services/category.service';
 import { EquipmentMovingService } from '../services/equipmentMoving.service';
+import { SureDeleteComponent } from '../sure-delete/sure-delete.component';
 
 @Component({
   selector: 'app-activity-log',
@@ -22,6 +23,8 @@ export class ActivityLogComponent implements OnInit, AfterViewInit{
   username!: string;
   password!: string;
 
+  public clickedRows = new Set<MovingEquipment>();
+  choosenEquipment: MovingEquipment = new MovingEquipment();
   public isGone: boolean[] = [];
   searchText: string = '';
   public categories: Category[] = [];
@@ -34,7 +37,7 @@ export class ActivityLogComponent implements OnInit, AfterViewInit{
     private dialog: MatDialog, private tokenStorage: TokenStorageService) {
     this.dataSource.filterPredicate = (data: any, filter) => {
       const dataStr = data.movingFrom + data.movingTo + data.movingDate + data.equipment.equipmentName
-      + data.equipment.equipmentOrderNumber + data.equipment.equipmentSerialNumber + data.equipment.category.categoryName;
+      +data.user.username + data.equipment.equipmentOrderNumber + data.equipment.equipmentSerialNumber + data.equipment.category.categoryName;
       return dataStr.indexOf(filter) != -1;
     }}
   displayedColumns: string[] = ['moving-date','moving-user', 'moving-name','moving-category','moving-order','moving-serial','moving-purpose','moving-from','moving-to', 'moving-description'];
@@ -88,7 +91,12 @@ export class ActivityLogComponent implements OnInit, AfterViewInit{
     this.allEquipmentMoving.filter(equiipment => equiipment.equipment.category.categoryName == $event.value);
     this.dataSource.data = this.allEquipmentMoving;
   }
-
+  getRecord(equipmentMoving: MovingEquipment) {
+    this.clickedRows = new Set<MovingEquipment>();
+    this.clickedRows.add(equipmentMoving);
+    this.choosenEquipment = equipmentMoving;
+    
+ }
   addUser() {
     const dialogRef = this.dialog.open(NewUserModalComponent, {
       width: '700px',
@@ -98,6 +106,11 @@ export class ActivityLogComponent implements OnInit, AfterViewInit{
   }
 
   deleteUser() {
-
+      console.log(this.choosenEquipment.user.id);
+      const dialogRef = this.dialog.open(SureDeleteComponent, {
+        width: '500px',
+        data: {username: this.choosenEquipment.user.username}
+      })
+      dialogRef.afterClosed().subscribe(result => console.log(result))
   }
 }

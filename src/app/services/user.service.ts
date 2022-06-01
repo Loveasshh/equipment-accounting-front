@@ -17,7 +17,7 @@ const httpOptions = {
 
 export class UserService {
 private loginUrl = 'http://localhost:8080/api/auth/signup';
-  private userUrl = 'http://localhost:8080/api/user';
+private userUrl = 'http://localhost:8080/api/user';
 
   constructor(private http: HttpClient) { }
 
@@ -30,5 +30,12 @@ private loginUrl = 'http://localhost:8080/api/auth/signup';
 
   attemptAuth(credentials: SignUpInfo): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
+  }
+
+  existByUsername(username: string){
+    return this.http.get<boolean>(`${this.userUrl}/existByUsername`,{
+      params: new HttpParams().append('username', username),
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
   }
 }

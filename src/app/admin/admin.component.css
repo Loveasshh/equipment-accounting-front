@@ -2,6 +2,7 @@ h1{
   padding-top: 2%;
 }
 .moving-table {
+  margin-right: 130px;
     width: 100%;
     border-top: 1px solid currentColor;
     border-left: 1px solid currentColor;
@@ -19,13 +20,13 @@ h1{
   align-items: left;
   flex-direction: row;
   justify-content: start;
-  column-gap: 750px;
+  column-gap: 850px;
 }
 .select{
   
 }
 .mat-column-moving-date {
-    width: 32px;
+    width: 100px;
     border-bottom: 1px solid currentColor;
     border-right: 1px solid currentColor;
     padding-right: 24px;
@@ -63,6 +64,7 @@ h1{
     border-right: 1px solid currentColor;
   }
   .mat-column-moving-to {
+    padding-left: 2%;
     border-bottom: 1px solid currentColor;
     width: 150px;
     text-align: center;

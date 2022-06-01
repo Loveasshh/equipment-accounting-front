@@ -1,35 +1,35 @@
 <h1>Фиксирование прибытия оборудования</h1>
-<form [formGroup]="myForm" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate mat-dialog-content>
+<form [formGroup]="myForm" (ngSubmit)="f.form.valid && onSave()" #f="ngForm" novalidate mat-dialog-content>
     <div class = "wrapper">
         <div class="one">
             <label for="equipmentName">Наименование</label>
             <input id = "equipmentName" [(ngModel)]="equipment.equipmentName" formControlName="equipmentName" class="input_field" type="text" 
-            required minlength="5" maxlength="15"/>
+            required minlength="5" maxlength="30" autocomplete="off"/>
         
             <div *ngIf="f.submitted" class="danger">
             <span *ngIf="_equipmentName?.errors?.['required']">Пустое название недопустимо</span>
             <span *ngIf="_equipmentName?.errors?.['minlength']">Введите больше 5 символов</span>
-            <span *ngIf="_equipmentName?.errors?.['maxlength']">Введите меньше 15 символов</span>
+            <span *ngIf="_equipmentName?.errors?.['maxlength']">Введите меньше 30 символов</span>
             </div>
     <label for="equipmentOrderNumber">Заказной номер</label>
     <input id = "equipmentOrderNumber" [(ngModel)]="equipment.equipmentOrderNumber" formControlName="equipmentOrderNumber" class="input_field" type="text"
-    required minlength="3" maxlength="15"/>
+    required minlength="3" maxlength="30" autocomplete="off"/>
         <div *ngIf="f.submitted" class="danger">
         <span *ngIf="_equipmentOrderNumber?.errors?.['required']">Пустое название недопустимо</span>
         <span *ngIf="_equipmentOrderNumber?.errors?.['minlength']">Введите больше 3 символов</span>
-        <span *ngIf="_equipmentOrderNumber?.errors?.['maxlength']">Введите меньше 15 символов</span>
+        <span *ngIf="_equipmentOrderNumber?.errors?.['maxlength']">Введите меньше 30 символов</span>
         </div>
     <label for="equipmentSerialNumber">Серийный номер</label>
     <input id = "equipmentSerialNumber" [(ngModel)]="equipment.equipmentSerialNumber" formControlName="equipmentSerialNumber" class="input_field" type="text"
-    required minlength="3" maxlength="15"/>
+    required minlength="3" maxlength="30" autocomplete="off"/>
     <div *ngIf="f.submitted" class="danger">
         <span *ngIf="_equipmentSerialNumber?.errors?.['required']">Пустое название недопустимо</span>
         <span *ngIf="_equipmentSerialNumber?.errors?.['minlength']">Введите больше 3 символов</span>
-        <span *ngIf="_equipmentSerialNumber?.errors?.['maxlength']">Введите меньше 15 символов</span>
+        <span *ngIf="_equipmentSerialNumber?.errors?.['maxlength']">Введите меньше 30 символов</span>
         </div>
     <label for="movingFrom">От кого</label>
     <input id = "movingFrom" [(ngModel)]="equipmentMoving.movingFrom" formControlName="movingFrom" class="input_field" type="text"
-    required minlength="5" maxlength="15"/>
+    required minlength="5" maxlength="15" autocomplete="off"/>
     <div *ngIf="f.submitted" class="danger">
         <span *ngIf="_movingFrom?.errors?.['required']">Пустое название недопустимо</span>
         <span *ngIf="_movingFrom?.errors?.['minlength']">Введите больше 5 символов</span>
@@ -37,7 +37,7 @@
         </div>
     <label for="movingTo">Кому</label>
     <input id = "movingTo" [(ngModel)]="equipmentMoving.movingTo" formControlName="movingTo" class="input_field" type="text"
-    required minlength="5" maxlength="15"/>
+    required minlength="5" maxlength="15" autocomplete="off"/>
     <div *ngIf="f.submitted" class="danger">
         <span *ngIf="_movingTo?.errors?.['required']">Пустое название недопустимо</span>
         <span *ngIf="_movingTo?.errors?.['minlength']">Введите больше 5 символов</span>
@@ -50,6 +50,7 @@
     <label for="description">Описание</label>
     <textarea id = "description" [(ngModel)]="equipmentMoving.description" formControlName="description"
     required minlength="10" maxlength="30"
+    autocomplete="off"
     style="padding-bottom:70px ;
     font-size:16px;
     height: 30px;
@@ -71,6 +72,7 @@
     <label for="purpose">Назначение</label>
     <textarea id = "purpose" [(ngModel)]="equipmentMoving.purpose" formControlName="purpose"
     required minlength="10" maxlength="30"
+    autocomplete="off"
     style="padding-bottom:70px ;
     font-size:16px;
     height: 30px;
@@ -86,6 +88,9 @@
 
 </div>
 <div class="btn_add">
-    <button class="but" >Добавить</button>
+    <button class="but" >Зафиксировать</button>
   </div>
+    <div *ngIf="isExistBySerialNumber" class="alert-danger">
+        <p class="error-message">Оборудование с данным серийным номером уже присутствует на балансе</p>
+    </div>
   </form>

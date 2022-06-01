@@ -7,7 +7,11 @@ h1{
       border-left: 1px solid currentColor;
       border-right: 1px solid currentColor;
     }
-    
+    ::ng-deep .mat-snack-bar-container{
+      color: white !important;
+      background-color: #0068A9 !important;
+      border-color: #c3e6cb !important;
+    }
     .equipment {
       display: flex;
       align-items: center;
@@ -42,6 +46,7 @@ h1{
       text-align: center;
     }
     .mat-column-equipment-category {
+      padding-left: 3%;
       border-bottom: 1px solid currentColor;
       width: 150px;
       text-align: center;

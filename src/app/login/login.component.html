@@ -1,7 +1,7 @@
 <div *ngIf="isLoggedIn; else loggedOut">
     <app-admin></app-admin>
   </div>
-  
+  <div class = "main">
   <ng-template #loggedOut>
     <nav class="main">
       <div class="main-img">
@@ -17,7 +17,7 @@
           <label for="username">Введите логин:</label>
           <mat-form-field appearance="fill">
             <input matInput name="username" [(ngModel)]="form.username" #username="ngModel"
-                   required minlength="3" maxlength="15"/>
+                   required minlength="3" maxlength="15" autocomplete="off"/>
           </mat-form-field>
           <div *ngIf="f.submitted && username.invalid">
             <div class="error-message" *ngIf="username?.errors?.['required']">Логин обязателен</div>
@@ -29,7 +29,7 @@
           <label for="password">Введите пароль:</label>
           <mat-form-field appearance="fill">
             <input matInput name="password" type="password" [(ngModel)]="form.password" #password="ngModel"
-                   required minlength="3" maxlength="12"/>
+                   required minlength="3" maxlength="12" autocomplete="off"/>
           </mat-form-field>
           <div *ngIf="f.submitted && password.invalid">
             <div class="error-message" *ngIf="password?.errors?.['required']">Пароль обязателен</div>
@@ -40,11 +40,11 @@
         </div>
         <div class="form-group">
           <button class="btn">Войти</button>
-          <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
-            <p class="error-message"></p>Введен неправильный логин<br>или пароль
+          <div *ngIf="f.submitted && isLoginFailed" class="alert-danger">
+            <p class="error-message"></p>Введен неправильный логин<br> или пароль
           </div>
         </div>
       </form>
     </div>
   </ng-template>
-  
+</div>

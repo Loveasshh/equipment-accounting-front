@@ -71,3 +71,8 @@ textarea{
   ::ng-deep .mat-simple-snackbar-action {
     color: red;
   }
+  .error-message {
+    color: #bf4547;
+    padding-bottom: 2%;
+    text-align: center;
+  }

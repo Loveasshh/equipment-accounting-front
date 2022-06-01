@@ -28,13 +28,21 @@
     color: white;
     cursor: pointer;
   }
+  ::ng-deep .mat-snack-bar-container{
+    color: white !important;
+    background-color: #0068A9 !important;
+    border-color: #c3e6cb !important;
+    margin:auto;
+    text-align: center !important;
+  }
+  .alert-danger {
+    padding-top: 3%;
+    text-align: center;
+    color: #bf4547;
+  }
   
   p{
     font-size: 16px;
   }
   
-  .error-message {
-    color: #bf4547;
-    padding-bottom: 15px;
-  }
-  
+ 

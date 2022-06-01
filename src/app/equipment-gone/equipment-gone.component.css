@@ -24,14 +24,9 @@ h1{
   .select{
     
   }
-  .mat-column-moving-date {
-    border-bottom: 1px solid currentColor;
-      width: 32px;
-      border-right: 1px solid currentColor;
-      padding-right: 24px;
-      text-align: center;
-    }
+  
     .mat-column-moving-name {
+      padding-right: 3%;
       border-bottom: 1px solid currentColor;
       border-right: 1px solid currentColor;
       width: 150px;
@@ -56,13 +51,8 @@ h1{
       border-right: 1px solid currentColor;
     }
   
-    .mat-column-moving-from {
-      border-bottom: 1px solid currentColor;
-      width: 150px;
-      text-align: center;
-      border-right: 1px solid currentColor;
-    }
     .mat-column-moving-to {
+      padding-left: 3%;
       border-bottom: 1px solid currentColor;
       width: 150px;
       text-align: center;

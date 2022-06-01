@@ -28,6 +28,7 @@ import { CommonModule, NgStyle } from '@angular/common';
 import { NewUserModalComponent } from './new-user-modal/new-user-modal.component';
 import { EquipmentActivityLogModalComponent } from './equipment-activity-log-modal/equipment-activity-log-modal.component';
 import { CustomPaginator } from './services/CustomPaginatorConfiguration';
+import { SureDeleteComponent } from './sure-delete/sure-delete.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { CustomPaginator } from './services/CustomPaginatorConfiguration';
     ActivityLogComponent,
     AdminComponent,
     NewUserModalComponent,
-    EquipmentActivityLogModalComponent
+    EquipmentActivityLogModalComponent,
+    SureDeleteComponent
   ],
   imports: [
     BrowserModule,

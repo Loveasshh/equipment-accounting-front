@@ -15,6 +15,7 @@ import { EquipmentForExcel } from '../domain/equipmentForExcel';
 import { ExcelService } from '../services/excel.service';
 import { EquipmentResponse } from '../domain/equipmentResponse';
 import { EquipmentList } from '../domain/equipmentList';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-equipment-balance',
   templateUrl: './equipment-balance.component.html',
@@ -36,7 +37,7 @@ export class EquipmentBalanceComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private adminService: AdminService, private categoryService: CategoryService, private equipmentService: EquipmentService,
-    private dialog: MatDialog, private excelService:ExcelService) {
+    private dialog: MatDialog, private excelService:ExcelService, public snackBar: MatSnackBar) {
 
     this.dataSource.filterPredicate = (data: any, filter) => {
       const dataStr = data.equipmentName + data.category.categoryName + data.equipmentSerialNumber + data.equipmentOrderNumber;
@@ -141,5 +142,11 @@ export class EquipmentBalanceComponent implements OnInit {
     this.equipmentList.forEach(el => {
         this.equipmentService.addEquipment(el).subscribe();
     });
+    window.location.reload()
+                this.snackBar.open("Данные успешно добавлены", "", {
+                  duration: 3000
+                });
   }
+  
+  
 }

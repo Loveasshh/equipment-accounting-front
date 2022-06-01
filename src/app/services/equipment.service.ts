@@ -37,4 +37,10 @@ export class EquipmentService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
+  existBySerialNumber(serialNumber: string){
+    return this.http.get<boolean>(`${this.equipmentUrl}/existBySerialNumber`,{
+      params: new HttpParams().append('serialNumber', serialNumber),
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
 }
