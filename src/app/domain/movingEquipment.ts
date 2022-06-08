@@ -13,7 +13,8 @@ export class MovingEquipment {
     movingDate!: Timestamp<String>;
     movingType!: string;
     purpose!: string;
-    isTemporary!: boolean;
+    isTemporary!: string;
+    returnDate!: string;
     description!: string;
   }
   

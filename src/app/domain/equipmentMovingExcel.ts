@@ -10,5 +10,7 @@ export class EquipmentMovingExcel {
     Кому!: string;
     Описание!: string;
     Назначение!: string;
+    Временно!: string;
+    Дата_возврата!: string;
   }
   

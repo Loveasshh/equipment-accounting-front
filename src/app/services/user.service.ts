@@ -38,4 +38,19 @@ private userUrl = 'http://localhost:8080/api/user';
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
+
+  deleteUser(username: string): Observable<string>{
+    return this.http.post<string>(`${this.userUrl}/deleteUser`,{},{
+      params: new HttpParams().append('username', username),
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+
+  
+  checkUser(username: string){
+    return this.http.get<boolean>(`${this.userUrl}/checkUser`,{
+      params: new HttpParams().append('username', username),
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
 }

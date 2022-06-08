@@ -1,17 +1,17 @@
 
 import { DataSource } from '@angular/cdk/collections';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { map } from 'rxjs';
+import { delay, map, startWith, tap } from 'rxjs';
 import { Category } from '../domain/category';
 import { MovingEquipment } from '../domain/movingEquipment';
 import { User } from '../domain/user';
 import { AdminService } from '../services/admin.service';
 import { CategoryService } from '../services/category.service';
 import {ViewChild} from '@angular/core';
-import {AfterViewInit} from '@angular/core';
+import {AfterContentInit} from '@angular/core';
 import { EquipmentMovingService } from '../services/equipmentMoving.service';
 import { EquipmentResponse } from '../domain/equipmentResponse';
 import { EquipmentMovingResponse } from '../domain/equipmentMovingResponse';
@@ -20,6 +20,8 @@ import { EquipmentService } from '../services/equipment.service';
 import { UserService } from '../services/user.service';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { BooleanInput } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'app-equipment-gone',
@@ -27,28 +29,31 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./equipment-gone.component.css']
 })
 
-export class EquipmentGoneComponent implements OnInit, AfterViewInit{
+export class EquipmentGoneComponent implements OnInit, AfterContentInit{
+  public check: boolean = false;
+  private month: number | any;
+  private date: string|any;
+  
   public choosenEquipmentMoving: MovingEquipment = new MovingEquipment();
-  public equipmentRs: EquipmentResponse = new EquipmentResponse();
   public equipmentMovingRs: EquipmentMovingResponse = new EquipmentMovingResponse();
   public categories: Category [] = [];
-  public equipment: Equipment = new Equipment();
   public equipmentMoving: MovingEquipment = new MovingEquipment();
+  
+  clickedRows = new Set<MovingEquipment>();
+  public isGone: boolean[] = [];
+  public allEquipmentMoving: MovingEquipment[] = [];
+  displayedColumns: string[] = ['moving-name','moving-category','moving-order','moving-serial','moving-to'];
+
+  dataSource = new MatTableDataSource();
+
   myForm: FormGroup = new FormGroup({
     "description": new FormControl("", Validators.required),
     "purpose": new FormControl("", Validators.required),
     "movingFrom": new FormControl("", Validators.required),
     "movingTo": new FormControl("", Validators.required),
   })
-  clickedRows = new Set<MovingEquipment>();
-  public isGone: boolean[] = [];
-  searchText: string = '';
-  public allEquipmentMoving: MovingEquipment[] = [];
-  public mappedAraray = [];
-  public keys: string[] = [];
-  public users: User[] = [];
-  public goodResponse = [];
-  constructor(private equipmentMovingService: EquipmentMovingService, 
+
+  constructor(private cdref: ChangeDetectorRef, private equipmentMovingService: EquipmentMovingService, 
     private categoryService: CategoryService, private equipmentService: EquipmentService, private userService: UserService,
     private tokenStorage: TokenStorageService, public snackBar: MatSnackBar) {
     this.dataSource.filterPredicate = (data: any, filter) => {
@@ -56,39 +61,27 @@ export class EquipmentGoneComponent implements OnInit, AfterViewInit{
       + data.equipment.equipmentOrderNumber + data.equipment.equipmentSerialNumber + data.equipment.category.categoryName;
       return dataStr.indexOf(filter) != -1;
     }}
-  displayedColumns: string[] = ['moving-name','moving-category','moving-order','moving-serial','moving-to'];
-  dataSource = new MatTableDataSource();
-  /*filterValues = {
-    movingTo: '',
-    movingFrom: ''
-  }
-  filter = new FormControl('');
-  movingFromFilter = new FormControl('');*/
+   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
   ngOnInit(): void {
     this.equipmentMovingService.getAllEquipmentMovingWithUniqueEquipment().subscribe(response => {
       this.allEquipmentMoving = response;
       this.dataSource.data = this.allEquipmentMoving;
-      console.log(this.allEquipmentMoving);
+      
       this.categoryService.getAllCategories().subscribe(
-        response => {this.categories = response;
-          console.log(this.categories[0].categoryName);}
-        
+        response => {this.categories = response;}
       );
     });
   }
   
 
-  ngAfterViewInit() {
+  ngAfterContentInit() {
     this.dataSource.paginator = this.paginator;
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue;
-  }
-  filterData($event : any){
-    this.dataSource.filter = $event.target.value;
   }
 
   onChange($event:any){
@@ -108,6 +101,7 @@ export class EquipmentGoneComponent implements OnInit, AfterViewInit{
    }
 
   onSubmit() {
+    console.log(this.check);
     if (this.myForm.valid) {
       this.userService.getUserByName(this.tokenStorage.getUsername()).subscribe((el) => {
           console.log(this.equipmentMoving);
@@ -118,9 +112,15 @@ export class EquipmentGoneComponent implements OnInit, AfterViewInit{
           this.equipmentMovingRs.movingFrom = this.equipmentMoving.movingFrom;
           this.equipmentMovingRs.movingTo = this.equipmentMoving.movingTo;
           this.equipmentMovingRs.movingType = "Уход";
+          if (this.check) {
+            this.equipmentMovingRs.isTemporary = "Да";
+            this.equipmentMovingRs.returnDate = this.date;
+          } else {
+            this.equipmentMovingRs.isTemporary = "Нет";
+            this.equipmentMovingRs.returnDate = "";
+          }
           this.equipmentMovingRs.purpose = this.equipmentMoving.purpose;
           
-          console.log("сука " + this.equipmentMovingRs.equipmentId)
           this.equipmentMovingService.addEquipmentMoving(this.equipmentMovingRs).subscribe(()=>window.location.reload());
         
       });
@@ -141,5 +141,22 @@ export class EquipmentGoneComponent implements OnInit, AfterViewInit{
   }
   get _purpose() {
     return this.myForm.get('purpose')
+  }
+
+  public onDateChange(event: MatDatepickerInputEvent<Date>): void {
+    this.month = event.value?.getMonth();
+    this.month++;
+    this.date = event.value?.getFullYear() + "-" + this.month + "-" + event.value?.getDate();
+    console.log(this.date);
+  }
+
+  checked(){
+    if (this.check) {
+      this.check = false;
+        
+    } else{
+      this.check = true;
+      
+    }
   }
 }

@@ -5,6 +5,7 @@ import {User} from "../domain/user";
 import { MovingEquipment } from '../domain/movingEquipment';
 import { Equipment } from '../domain/equipment';
 import { EquipmentMovingResponse } from '../domain/equipmentMovingResponse';
+import { EquipmentMovingExcelResponse } from '../domain/equipmentMovingExcelResponse';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,7 +24,9 @@ export class EquipmentMovingService {
   addEquipmentMoving(equipmentMovingResponse: EquipmentMovingResponse): Observable<EquipmentMovingResponse> {
     return this.http.post<EquipmentMovingResponse>(`${this.equipmentUrl}/addEquipmentMoving`,equipmentMovingResponse,httpOptions);
   }
-
+  addEquipmentMovingFromExcel(equipmentMovingExcelResponse: EquipmentMovingExcelResponse): Observable<EquipmentMovingExcelResponse> {
+    return this.http.post<EquipmentMovingExcelResponse>(`${this.equipmentUrl}/addEquipmentMovingFromExcel`,equipmentMovingExcelResponse,httpOptions);
+  }
   getAllEquipmentMovingWithUniqueEquipment(): Observable<MovingEquipment[]> {
     return this.http.get<MovingEquipment[]>(`${this.equipmentUrl}/getAllWithUniqueEquipment`, httpOptions);
   }

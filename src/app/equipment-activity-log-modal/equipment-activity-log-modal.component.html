@@ -57,6 +57,16 @@ style="overflow-y: auto; max-height:400px;">
                 <td mat-cell *matCellDef="let element"  [ngStyle]="{'background-color':element.movingType === 'Приход' ? '#90EE90' : '#FFA07A' }"> {{element.description}} </td>
               </ng-container>
     
+              <ng-container matColumnDef="moving-temporary">
+                <th mat-header-cell *matHeaderCellDef>Временно</th>
+                <td mat-cell *matCellDef="let element" [ngStyle]="{'background-color':element.movingType === 'Приход' ? '#90EE90' : '#FFA07A' }"> {{element.isTemporary}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="moving-return">
+                <th mat-header-cell *matHeaderCellDef>Дата возврата</th>
+                <td mat-cell *matCellDef="let element"  [ngStyle]="{'background-color':element.movingType === 'Приход' ? '#90EE90' : '#FFA07A' }"> {{element.returnDate}} </td>
+              </ng-container>
+
               <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"
              

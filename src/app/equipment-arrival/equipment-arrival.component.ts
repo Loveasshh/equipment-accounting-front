@@ -80,7 +80,6 @@ export class EquipmentArrivalComponent implements OnInit {
               this.equipmentMovingRs.movingType = "Приход";
               this.equipmentMovingRs.purpose = this.equipmentMoving.purpose;
               
-              console.log("сука " + this.equipmentMovingRs.equipmentId)
               this.equipmentMovingService.addEquipmentMoving(this.equipmentMovingRs).subscribe(()=> {
                 
               });

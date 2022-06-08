@@ -17,20 +17,18 @@ export class EquipmentActivityLogModalComponent implements OnInit {
 
   public categories: Category[] = [];
   public allEquipmentMoving: MovingEquipment[] = [];
-  
+  displayedColumns: string[] = ['moving-date','moving-user', 'moving-name','moving-category','moving-order','moving-serial','moving-purpose','moving-from','moving-to', 'moving-description',  'moving-temporary','moving-return'];
+  dataSource = new MatTableDataSource();
+
   constructor(private equipmentMoving: EquipmentMovingService, private categoryService: CategoryService,
     public dialogRef: MatDialogRef<NewUserModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {equipmentName: string, equipmentSerialNumber: string}) {this.dataSource.filterPredicate = (data: any, filter) => {
       const dataStr = data.movingFrom + data.movingTo + data.movingDate + data.equipment.equipmentName
       + data.equipment.equipmentOrderNumber + data.equipment.equipmentSerialNumber + data.equipment.category.categoryName;
-      return dataStr.indexOf(filter) != -1; }}
+      return dataStr.indexOf(filter) != -1; }
+    }
 
-       displayedColumns: string[] = ['moving-date','moving-user', 'moving-name','moving-category','moving-order','moving-serial','moving-purpose','moving-from','moving-to', 'moving-description'];
-  dataSource = new MatTableDataSource();
-
-
-
-
+       
   ngOnInit(): void {
     console.log(this.data.equipmentName);
     console.log(this.data.equipmentSerialNumber);
@@ -55,15 +53,5 @@ export class EquipmentActivityLogModalComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue;
   }
-  filterData($event : any){
-    this.dataSource.filter = $event.target.value;
-  }
-}
-function ViewChild(MatPaginator: any) {
-  throw new Error('Function not implemented.');
-}
-
-function MatPaginator(MatPaginator: any) {
-  throw new Error('Function not implemented.');
 }
 

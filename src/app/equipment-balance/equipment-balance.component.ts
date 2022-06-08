@@ -55,10 +55,8 @@ export class EquipmentBalanceComponent implements OnInit {
         };
       });
       this.dataSource.data = this.allEquipment;
-      console.log(this.allEquipment);
       this.categoryService.getAllCategories().subscribe(
-        response => {this.categories = response;
-          console.log(this.categories[0].categoryName);}
+        response => {this.categories = response;}
         
       );
     });
@@ -69,9 +67,6 @@ export class EquipmentBalanceComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue;
-  }
-  filterData($event : any){
-    this.dataSource.filter = $event.target.value;
   }
 
   onChange($event:any){
@@ -128,10 +123,6 @@ export class EquipmentBalanceComponent implements OnInit {
       
     
   }
-  /*console.log("сука " + this.equipmentFromExcel);
-  let x = this.dataExcel.slice(1);
-  this.equipmentFromExcel = [].concat.apply([], x);
-  console.log(this.equipmentFromExcel);*/
   
   this.equipmentList = this.equipmentFromExcel.map((object: any) => {
       return {

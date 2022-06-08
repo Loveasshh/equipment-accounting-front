@@ -76,9 +76,22 @@
               <span *ngIf="_movingTo?.errors?.['minlength']">Введите больше 5 символов</span>
               <span *ngIf="_movingTo?.errors?.['maxlength']">Введите меньше 15 символов</span>
               </div>
+              <div class = "temporary">
+                <section class="example-section">
+                  <mat-checkbox class="example-margin" (change) ="checked()">Временно</mat-checkbox>
+                </section>
+                <mat-form-field *ngIf="check">
+                  <label for="myDatePicker">Выберите дату возврата</label>
+                  <input matInput [matDatepicker]="myDatePicker" (dateChange)="onDateChange($event)">
+                  <mat-datepicker-toggle [for] = "myDatePicker" matSuffix></mat-datepicker-toggle>
+                  <mat-datepicker #myDatePicker></mat-datepicker>
+                </mat-form-field>
+              </div>
         </div>
+        
         <div class="two">
-            
+          
+
             <label for="description">Описание</label>
             
             <textarea id = "description" [(ngModel)]="equipmentMoving.description" formControlName="description"

@@ -5,7 +5,8 @@ export class EquipmentMovingResponse {
     movingFrom!: string;
     movingType!: string;
     purpose!: string;
-    isTemporary!: boolean;
+    isTemporary!: string;
+    returnDate!: string;
     description!: string;
   }
   

@@ -22,32 +22,20 @@ export class ActivityLogComponent implements OnInit, AfterViewInit{
   authority!: string;
   username!: string;
   password!: string;
-
   public clickedRows = new Set<MovingEquipment>();
   choosenEquipment: MovingEquipment = new MovingEquipment();
-  public isGone: boolean[] = [];
-  searchText: string = '';
   public categories: Category[] = [];
   public allEquipmentMoving: MovingEquipment[] = [];
-  public mappedAraray = [];
-  public keys: string[] = [];
-  public users: User[] = [];
-  public goodResponse = [];
+  displayedColumns: string[] = ['moving-date','moving-user', 'moving-name','moving-category','moving-order','moving-serial','moving-purpose','moving-from','moving-to', 'moving-description',  'moving-temporary','moving-return'];
+  dataSource = new MatTableDataSource();
+  
   constructor(private equipmentMoving: EquipmentMovingService, private categoryService: CategoryService,
     private dialog: MatDialog, private tokenStorage: TokenStorageService) {
     this.dataSource.filterPredicate = (data: any, filter) => {
       const dataStr = data.movingFrom + data.movingTo + data.movingDate + data.equipment.equipmentName
-      +data.user.username + data.equipment.equipmentOrderNumber + data.equipment.equipmentSerialNumber + data.equipment.category.categoryName;
+      +data.user.username + data.equipment.equipmentOrderNumber + data.equipment.equipmentSerialNumber + data.equipment.category.categoryName + data.isTemporary + data.returnDate;
       return dataStr.indexOf(filter) != -1;
     }}
-  displayedColumns: string[] = ['moving-date','moving-user', 'moving-name','moving-category','moving-order','moving-serial','moving-purpose','moving-from','moving-to', 'moving-description'];
-  dataSource = new MatTableDataSource();
-  /*filterValues = {
-    movingTo: '',
-    movingFrom: ''
-  }
-  filter = new FormControl('');
-  movingFromFilter = new FormControl('');*/
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
   ngOnInit(): void {
@@ -81,9 +69,6 @@ export class ActivityLogComponent implements OnInit, AfterViewInit{
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue;
-  }
-  filterData($event : any){
-    this.dataSource.filter = $event.target.value;
   }
 
   onChange($event:any){

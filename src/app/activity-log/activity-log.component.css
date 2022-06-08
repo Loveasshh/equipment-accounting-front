@@ -22,7 +22,7 @@ h1{
   }
   .searchFields{
     
-    margin-left: 74%;
+    margin-left: 85%;
   }
  
   .select{
@@ -80,8 +80,8 @@ h1{
       text-align: center;
     }
     .mat-column-moving-description {
-      padding-left: 20px;
       border-bottom: 1px solid currentColor;
+      border-right: 1px solid currentColor;
       width: 100px;
       text-align: center;
     }
@@ -94,6 +94,21 @@ h1{
       border-right: 1px solid currentColor;
     }
 
+    .mat-column-moving-temporary {
+      border-right: 1px solid currentColor;
+  
+      border-bottom: 1px solid currentColor;
+      width: 150px;
+      text-align: center;
+    }
+    .mat-column-moving-return {
+      padding-left: 2%;
+      border-bottom: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+      width: 150px;
+      text-align: center;
+    }
+    
     .buttons {
       margin-right: 100px;
       display: flex;

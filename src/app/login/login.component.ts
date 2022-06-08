@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {AuthLoginInfo} from '../auth/login-info';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +15,12 @@ export class LoginComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
+  isEmployee = false;
   errorMessage = '';
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) {
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private userService: UserService) {
   }
 
 
@@ -33,19 +35,28 @@ export class LoginComponent implements OnInit {
     this.loginInfo = new AuthLoginInfo(
       this.form.username,
       this.form.password);
-
+      
+      
     this.authService.attemptAuth(this.loginInfo).subscribe(
+      
       data => {
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUsername(data.username);
         this.tokenStorage.saveAuthorities(data.roles);
-
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-       // this.check();
-
-        this.roles = this.tokenStorage.getAuthorities();
-        this.reloadPage();
+        console.log(data.isEmployee);
+        if (data.isEmployee) {
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          
+          
+          this.roles = this.tokenStorage.getAuthorities();
+          this.reloadPage();
+        } else {
+          this.isLoginFailed = true;
+          this.errorMessage = "ewefew";
+        }
+        
+        
       },
       error => {
         console.log(error);

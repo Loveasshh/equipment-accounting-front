@@ -17,16 +17,21 @@ export class SureDeleteComponent implements OnInit {
     public snackBar: MatSnackBar, private userService: UserService) {this.name = this.data.username }
 
   ngOnInit(): void {
-    console.log(this.data.username);
+    
   }
   onClose(): void{
     this.dialogRef.close();
   }
 
   onDelete(): void{
-    this.snackBar.open("Пользователь успешно удален", "", {
-      duration: 3000
+    console.log(this.data.username)
+    this.userService.deleteUser(this.data.username).subscribe(()=>{
+      console.log(this.data.username + "ацуацу");
+      this.snackBar.open("Пользователь успешно удален", "", {
+        duration: 3000
+      });
+      this.dialogRef.close();
     });
-    this.dialogRef.close();
+    
   }
 }
